@@ -32,9 +32,19 @@ def main(args):
 	return 'done!'
 
 
-if __name__ == '__main__':
-   sys.exit(main(sys.argv[1:]))
+passwrd = input('Enter the password to test: ')
 
-# Will try to read passwords from a text file instead of command line 
+with open('passwords.txt','a') as file:
+	file.write(passwrd+'\n')
+
+with open('passwords.txt','r') as myfile:
+	passwd = myfile.readlines()
+	cleaned_passwords = []
+	for word in passwd:
+		cleaned_passwords.append(word.replace('\n',''))
+
+if __name__ == '__main__':
+   main(cleaned_passwords)
+
 
 
